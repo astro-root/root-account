@@ -1,0 +1,5 @@
+export { createBrowserRootAccountClient, createServerRootAccountClient } from './client.js'
+export type { RootAccountConfig } from './client.js'
+export { decodeEntitlements, hasPlan } from './entitlements.js'
+export type { Entitlements, PlanTier, PlanStatus } from './types.js'
+export { PLAN_RANK } from './types.js'

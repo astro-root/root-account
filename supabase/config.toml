@@ -1,0 +1,23 @@
+project_id = "root-account"
+
+[auth]
+enabled = true
+# 各サービスのURLを追加していく（ローカル開発用）
+site_url = "http://localhost:3000"
+additional_redirect_urls = [
+  "https://accounts.astro-root.com",
+  "https://quiznavi.astro-root.com",
+  "https://mekuru.astro-root.com"
+]
+
+# Custom Access Token Hook: JWTにplan/plan_statusクレームを埋め込む
+[auth.hook.custom_access_token]
+enabled = true
+uri = "pg-functions://postgres/public/custom_access_token_hook"
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[db]
+port = 54322
