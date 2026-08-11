@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { sendMagicLink } from './actions'
 
-export default function LoginPage() {
+function LoginForm() {
   const searchParams = useSearchParams()
   const returnTo = searchParams.get('return_to') ?? ''
   const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null)
@@ -75,5 +75,13 @@ export default function LoginPage() {
         るーとの研究室の全サービスで共通利用できます
       </p>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   )
 }
