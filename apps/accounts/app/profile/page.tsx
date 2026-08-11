@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { decodeEntitlements } from '@rootlab/account-sdk'
+import { decodeEntitlements } from '@/lib/root-account/entitlements'
 import { PlanSeal } from '@/components/PlanSeal'
 
 export default async function ProfilePage() {

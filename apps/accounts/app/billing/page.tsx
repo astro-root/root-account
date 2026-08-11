@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
-import { decodeEntitlements } from '@rootlab/account-sdk'
+import { decodeEntitlements } from '@/lib/root-account/entitlements'
 import { PlanSeal } from '@/components/PlanSeal'
-import type { PlanTier } from '@rootlab/account-sdk'
+import type { PlanTier } from '@/lib/root-account/entitlements'
 
 const PLANS: {
   tier: PlanTier

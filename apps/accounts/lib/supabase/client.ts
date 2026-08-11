@@ -1,9 +1,16 @@
-import { createBrowserRootAccountClient } from '@rootlab/account-sdk'
+import { createBrowserClient } from '@supabase/ssr'
 
 export function createClient() {
-  return createBrowserRootAccountClient({
-    url: process.env.NEXT_PUBLIC_ROOT_ACCOUNT_URL!,
-    anonKey: process.env.NEXT_PUBLIC_ROOT_ACCOUNT_ANON_KEY!,
-    cookieDomain: process.env.NEXT_PUBLIC_ROOT_ACCOUNT_COOKIE_DOMAIN!,
-  })
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_ROOT_ACCOUNT_URL!,
+    process.env.NEXT_PUBLIC_ROOT_ACCOUNT_ANON_KEY!,
+    {
+      cookieOptions: {
+        domain: process.env.NEXT_PUBLIC_ROOT_ACCOUNT_COOKIE_DOMAIN,
+        path: '/',
+        sameSite: 'lax',
+        secure: true,
+      },
+    }
+  )
 }

@@ -1,4 +1,4 @@
-import type { PlanTier } from '@rootlab/account-sdk'
+import type { PlanTier } from '@/lib/root-account/entitlements'
 
 const PLAN_LABEL: Record<PlanTier, { kanji: string; latin: string }> = {
   bachelor: { kanji: '学士', latin: 'BACHELOR' },
