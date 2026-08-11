@@ -69,6 +69,13 @@ export default async function ProfilePage() {
       </section>
 
       <Link
+        href="/profile/edit"
+        className="mb-3 block w-full rounded-md border border-ink-border py-3 text-center font-medium text-ink-text transition hover:border-brass"
+      >
+        プロフィールを編集する
+      </Link>
+
+      <Link
         href="/billing"
         className="block w-full rounded-md border border-brass bg-brass/10 py-3 text-center font-medium text-brass transition hover:bg-brass/20"
       >
