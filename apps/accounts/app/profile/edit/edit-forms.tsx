@@ -6,7 +6,7 @@ import { updateProfile, changeEmail, changePassword, type EditResult } from './a
 function ResultMessage({ result }: { result: EditResult | null }) {
   if (!result) return null
   return (
-    <p className={`mt-2 text-sm ${result.ok ? 'text-sage' : 'text-red-400'}`} role="status">
+    <p className={`mt-2 text-sm ${result.ok ? 'text-success' : 'text-danger'}`} role="status">
       {result.message}
     </p>
   )
@@ -26,17 +26,17 @@ export function ProfileForm({
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-ink-border bg-ink-surface p-5"
+      className="space-y-4 rounded-lg border border-line bg-white p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await updateProfile(formData))
         setPending(false)
       }}
     >
-      <h2 className="font-display text-lg text-ink-text">プロフィール</h2>
+      <h2 className="text-base font-semibold text-neutral-900">プロフィール</h2>
 
       <div>
-        <label htmlFor="username" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="username" className="mb-1.5 block text-xs text-muted">
           ユーザーID
         </label>
         <input
@@ -46,12 +46,12 @@ export function ProfileForm({
           required
           defaultValue={initialUsername}
           pattern="[a-z0-9_]{3,20}"
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <div>
-        <label htmlFor="display_name" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="display_name" className="mb-1.5 block text-xs text-muted">
           表示名
         </label>
         <input
@@ -60,12 +60,12 @@ export function ProfileForm({
           type="text"
           required
           defaultValue={initialDisplayName}
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <div>
-        <label htmlFor="bio" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="bio" className="mb-1.5 block text-xs text-muted">
           自己紹介
         </label>
         <textarea
@@ -73,14 +73,14 @@ export function ProfileForm({
           name="bio"
           rows={3}
           defaultValue={initialBio}
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-brass bg-brass/10 px-4 py-2 text-sm font-medium text-brass hover:bg-brass/20 disabled:opacity-50"
+        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
       >
         {pending ? '保存中…' : '保存する'}
       </button>
@@ -95,18 +95,18 @@ export function EmailForm({ currentEmail }: { currentEmail: string }) {
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-ink-border bg-ink-surface p-5"
+      className="space-y-4 rounded-lg border border-line bg-white p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await changeEmail(formData))
         setPending(false)
       }}
     >
-      <h2 className="font-display text-lg text-ink-text">メールアドレス</h2>
-      <p className="text-xs text-ink-muted">現在: {currentEmail}</p>
+      <h2 className="text-base font-semibold text-neutral-900">メールアドレス</h2>
+      <p className="text-xs text-muted">現在: {currentEmail}</p>
 
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="email" className="mb-1.5 block text-xs text-muted">
           新しいメールアドレス
         </label>
         <input
@@ -114,14 +114,14 @@ export function EmailForm({ currentEmail }: { currentEmail: string }) {
           name="email"
           type="email"
           required
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-brass bg-brass/10 px-4 py-2 text-sm font-medium text-brass hover:bg-brass/20 disabled:opacity-50"
+        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
       >
         {pending ? '送信中…' : '変更する'}
       </button>
@@ -136,20 +136,20 @@ export function PasswordForm() {
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-ink-border bg-ink-surface p-5"
+      className="space-y-4 rounded-lg border border-line bg-white p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await changePassword(formData))
         setPending(false)
       }}
     >
-      <h2 className="font-display text-lg text-ink-text">パスワード</h2>
-      <p className="text-xs text-ink-muted">
+      <h2 className="text-base font-semibold text-neutral-900">パスワード</h2>
+      <p className="text-xs text-muted">
         Google/メールリンクのみで登録した方も、ここで新しくパスワードを設定できます。
       </p>
 
       <div>
-        <label htmlFor="password" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="password" className="mb-1.5 block text-xs text-muted">
           新しいパスワード
         </label>
         <input
@@ -159,12 +159,12 @@ export function PasswordForm() {
           required
           minLength={8}
           autoComplete="new-password"
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <div>
-        <label htmlFor="password_confirm" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="password_confirm" className="mb-1.5 block text-xs text-muted">
           新しいパスワード(確認)
         </label>
         <input
@@ -174,14 +174,14 @@ export function PasswordForm() {
           required
           minLength={8}
           autoComplete="new-password"
-          className="w-full rounded-md border border-ink-border bg-ink-surface2 px-4 py-2.5 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-4 py-2.5 text-neutral-900 focus:border-neutral-900"
         />
       </div>
 
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-brass bg-brass/10 px-4 py-2 text-sm font-medium text-brass hover:bg-brass/20 disabled:opacity-50"
+        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
       >
         {pending ? '変更中…' : 'パスワードを変更する'}
       </button>

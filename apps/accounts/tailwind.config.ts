@@ -5,33 +5,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: {
-          bg: '#0B1220',
-          surface: '#141F33',
-          surface2: '#1B2740',
-          border: '#28324A',
-          text: '#E8ECF4',
-          muted: '#8792A8',
-        },
-        brass: {
-          DEFAULT: '#E3A857',
-          dim: '#B8862B',
-        },
-        sage: {
-          DEFAULT: '#4FA37D',
-          dim: '#2F6B52',
-        },
+        line: '#E5E5E5',
+        surface: '#FAFAFA',
+        muted: '#737373',
+        accent: '#171717',
+        danger: '#DC2626',
+        success: '#16A34A',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
-        body: ['var(--font-body)', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
-      },
-      backgroundImage: {
-        grid: 'linear-gradient(rgba(232,236,244,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(232,236,244,0.035) 1px, transparent 1px)',
-      },
-      backgroundSize: {
-        grid: '28px 28px',
+        sans: ['var(--font-sans)', 'sans-serif'],
       },
     },
   },

@@ -59,12 +59,12 @@ export function AvatarUploader({
 
   return (
     <div className="flex items-center gap-4">
-      <div className="h-16 w-16 overflow-hidden rounded-full border border-brass bg-ink-surface2">
+      <div className="h-16 w-16 overflow-hidden rounded-full border border-neutral-900 bg-white">
         {url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={url} alt="" className="h-full w-full object-cover" />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs text-ink-muted">
+          <div className="flex h-full w-full items-center justify-center text-xs text-muted">
             未設定
           </div>
         )}
@@ -74,7 +74,7 @@ export function AvatarUploader({
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="rounded-md border border-ink-border px-3 py-1.5 text-xs text-ink-text hover:border-brass disabled:opacity-50"
+          className="rounded-md border border-line px-3 py-1.5 text-xs text-neutral-900 hover:border-neutral-900 disabled:opacity-50"
         >
           {uploading ? 'アップロード中…' : '画像を変更'}
         </button>
@@ -85,7 +85,7 @@ export function AvatarUploader({
           onChange={handleFileChange}
           className="hidden"
         />
-        {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+        {error && <p className="mt-1 text-xs text-danger">{error}</p>}
       </div>
     </div>
   )

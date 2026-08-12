@@ -29,7 +29,7 @@ function GoogleButton({ returnTo }: { returnTo: string }) {
       type="button"
       onClick={handleClick}
       disabled={loading}
-      className="flex w-full items-center justify-center gap-2 rounded-md border border-ink-border bg-ink-surface py-3 text-sm font-medium text-ink-text transition hover:bg-ink-surface2 disabled:opacity-50"
+      className="flex w-full items-center justify-center gap-2 rounded-md border border-line bg-white py-2.5 text-sm font-medium text-neutral-900 transition hover:bg-surface disabled:opacity-50"
     >
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>
         <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z" />
@@ -62,7 +62,7 @@ function PasswordForm({ returnTo }: { returnTo: string }) {
     >
       <input type="hidden" name="return_to" value={returnTo} />
       <div>
-        <label htmlFor="identifier" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="identifier" className="mb-1.5 block text-xs text-muted">
           ユーザーID または メールアドレス
         </label>
         <input
@@ -72,11 +72,11 @@ function PasswordForm({ returnTo }: { returnTo: string }) {
           required
           autoComplete="username"
           placeholder="your_id または you@example.com"
-          className="w-full rounded-md border border-ink-border bg-ink-surface px-4 py-3 text-ink-text placeholder:text-ink-muted/50 focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-accent"
         />
       </div>
       <div>
-        <label htmlFor="password" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="password" className="mb-1.5 block text-xs text-muted">
           パスワード
         </label>
         <input
@@ -85,24 +85,24 @@ function PasswordForm({ returnTo }: { returnTo: string }) {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-md border border-ink-border bg-ink-surface px-4 py-3 text-ink-text focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm text-neutral-900 focus:border-accent"
         />
       </div>
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md border border-brass bg-brass/10 py-3 font-medium text-brass transition hover:bg-brass/20 disabled:opacity-50"
+        className="w-full rounded-md bg-accent py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50"
       >
         {pending ? 'ログイン中…' : 'ログイン'}
       </button>
       {status && !status.ok && (
-        <p className="text-sm text-red-400" role="status">
+        <p className="text-sm text-danger" role="status">
           {status.message}
         </p>
       )}
-      <p className="text-center text-xs text-ink-muted">
+      <p className="text-center text-xs text-muted">
         アカウントをお持ちでない方は{' '}
-        <Link href="/signup" className="text-brass hover:underline">
+        <Link href="/signup" className="font-medium text-neutral-900 hover:underline">
           新規登録
         </Link>
       </p>
@@ -127,7 +127,7 @@ function MagicLinkForm({ returnTo }: { returnTo: string }) {
     >
       <input type="hidden" name="return_to" value={returnTo} />
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-xs text-ink-muted">
+        <label htmlFor="email" className="mb-1.5 block text-xs text-muted">
           メールアドレス
         </label>
         <input
@@ -136,18 +136,18 @@ function MagicLinkForm({ returnTo }: { returnTo: string }) {
           type="email"
           required
           placeholder="you@example.com"
-          className="w-full rounded-md border border-ink-border bg-ink-surface px-4 py-3 text-ink-text placeholder:text-ink-muted/50 focus:border-brass"
+          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-accent"
         />
       </div>
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md border border-brass bg-brass/10 py-3 font-medium text-brass transition hover:bg-brass/20 disabled:opacity-50"
+        className="w-full rounded-md bg-accent py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50"
       >
         {pending ? '送信中…' : 'ログインリンクを送る'}
       </button>
       {status && (
-        <p className={`text-sm ${status.ok ? 'text-sage' : 'text-red-400'}`} role="status">
+        <p className={`text-sm ${status.ok ? 'text-success' : 'text-danger'}`} role="status">
           {status.message}
         </p>
       )}
@@ -163,32 +163,28 @@ function LoginContent() {
   return (
     <div>
       <header className="mb-8">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-brass/70">
+        <p className="text-xs font-medium uppercase tracking-wider text-muted">
           Root's Laboratory
         </p>
-        <h1 className="mt-2 font-display text-3xl leading-snug text-ink-text">
-          研究員証で
-          <br />
-          ログイン
-        </h1>
+        <h1 className="mt-2 text-2xl font-semibold text-neutral-900">ログイン</h1>
       </header>
 
       <div className="mb-6">
         <GoogleButton returnTo={returnTo} />
       </div>
 
-      <div className="mb-6 flex items-center gap-3 text-xs text-ink-muted">
-        <div className="h-px flex-1 bg-ink-border" />
+      <div className="mb-6 flex items-center gap-3 text-xs text-muted">
+        <div className="h-px flex-1 bg-line" />
         または
-        <div className="h-px flex-1 bg-ink-border" />
+        <div className="h-px flex-1 bg-line" />
       </div>
 
-      <div className="mb-4 flex gap-1 rounded-md border border-ink-border p-1">
+      <div className="mb-4 flex gap-1 rounded-md bg-surface p-1">
         <button
           type="button"
           onClick={() => setTab('password')}
           className={`flex-1 rounded py-1.5 text-sm transition ${
-            tab === 'password' ? 'bg-ink-surface2 text-ink-text' : 'text-ink-muted'
+            tab === 'password' ? 'bg-white text-neutral-900 shadow-sm' : 'text-muted'
           }`}
         >
           ID・パスワード
@@ -197,7 +193,7 @@ function LoginContent() {
           type="button"
           onClick={() => setTab('magiclink')}
           className={`flex-1 rounded py-1.5 text-sm transition ${
-            tab === 'magiclink' ? 'bg-ink-surface2 text-ink-text' : 'text-ink-muted'
+            tab === 'magiclink' ? 'bg-white text-neutral-900 shadow-sm' : 'text-muted'
           }`}
         >
           メールでリンク送信
@@ -210,7 +206,7 @@ function LoginContent() {
         <MagicLinkForm returnTo={returnTo} />
       )}
 
-      <p className="mt-10 text-center text-xs text-ink-muted">
+      <p className="mt-10 text-center text-xs text-muted">
         このアカウントは Q-Mark / Q-Room / QuizNavi / めくる など
         <br />
         るーとの研究室の全サービスで共通利用できます

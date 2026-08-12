@@ -18,14 +18,14 @@ export default async function ProfileEditPage() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-display text-2xl text-ink-text">アカウント設定</h1>
-        <Link href="/profile" className="text-sm text-ink-muted hover:text-ink-text">
+        <h1 className="text-2xl font-semibold text-neutral-900">アカウント設定</h1>
+        <Link href="/profile" className="text-sm text-muted hover:text-neutral-900">
           ← 研究員証に戻る
         </Link>
       </div>
 
-      <div className="mb-6 rounded-lg border border-ink-border bg-ink-surface p-5">
-        <h2 className="mb-3 font-display text-lg text-ink-text">アイコン</h2>
+      <div className="mb-6 rounded-lg border border-line bg-white p-5">
+        <h2 className="mb-3 text-base font-semibold text-neutral-900">アイコン</h2>
         <AvatarUploader userId={session!.user.id} initialUrl={profile?.avatar_url ?? null} />
       </div>
 

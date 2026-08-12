@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { decodeEntitlements } from '@/lib/root-account/entitlements'
-import { PlanSeal } from '@/components/PlanSeal'
+import { LogoutButton } from '@/components/LogoutButton'
+
+const PLAN_LABEL: Record<string, string> = {
+  bachelor: '学士',
+  master: '修士',
+  doctor: '博士',
+}
 
 export default async function ProfilePage() {
   const supabase = await createClient()
@@ -11,14 +17,9 @@ export default async function ProfilePage() {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('display_name, research_points, bio')
+    .select('display_name, username, avatar_url')
     .eq('id', session!.user.id)
     .single()
-
-  const { data: badges } = await supabase
-    .from('user_badges')
-    .select('badge_code, awarded_by, badges(name, icon)')
-    .eq('user_id', session!.user.id)
 
   const entitlements = decodeEntitlements(session!.access_token)
   const plan = entitlements?.plan ?? 'bachelor'
@@ -26,58 +27,42 @@ export default async function ProfilePage() {
   return (
     <div>
       <header className="mb-8 flex items-start justify-between">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brass/70">
-            Researcher ID
-          </p>
-          <h1 className="mt-2 font-display text-2xl text-ink-text">
-            {profile?.display_name ?? 'ラボの研究員'}
-          </h1>
-          <p className="mt-1 font-mono text-sm text-ink-muted">{session!.user.email}</p>
+        <div className="flex items-center gap-4">
+          <div className="h-14 w-14 overflow-hidden rounded-full border border-line bg-surface">
+            {profile?.avatar_url ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
+            ) : null}
+          </div>
+          <div>
+            <h1 className="text-lg font-semibold text-neutral-900">
+              {profile?.display_name ?? 'ラボの研究員'}
+            </h1>
+            <p className="text-sm text-muted">
+              {profile?.username ? `@${profile.username}` : session!.user.email}
+            </p>
+          </div>
         </div>
-        <PlanSeal plan={plan} />
+        <LogoutButton />
       </header>
 
-      <section className="mb-6 rounded-lg border border-ink-border bg-ink-surface p-5">
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-ink-muted">研究ポイント</span>
-          <span className="font-mono text-2xl text-brass">
-            {profile?.research_points ?? 0}
-            <span className="ml-1 text-xs text-ink-muted">pt</span>
-          </span>
-        </div>
-      </section>
-
-      <section className="mb-6 rounded-lg border border-ink-border bg-ink-surface p-5">
-        <h2 className="mb-3 text-sm text-ink-muted">獲得バッジ</h2>
-        {badges && badges.length > 0 ? (
-          <ul className="flex flex-wrap gap-2">
-            {badges.map((b: any) => (
-              <li
-                key={b.badge_code}
-                className="rounded-full border border-ink-border bg-ink-surface2 px-3 py-1 text-xs text-ink-text"
-              >
-                {b.badges?.name ?? b.badge_code}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-sm text-ink-muted">
-            各サービスで課題をこなすと、ここにバッジが並びます。
-          </p>
-        )}
-      </section>
+      <div className="mb-6 flex items-center justify-between rounded-lg border border-line p-4">
+        <span className="text-sm text-muted">現在のプラン</span>
+        <span className="rounded-full border border-line px-3 py-1 text-sm font-medium text-neutral-900">
+          {PLAN_LABEL[plan] ?? plan}
+        </span>
+      </div>
 
       <Link
         href="/profile/edit"
-        className="mb-3 block w-full rounded-md border border-ink-border py-3 text-center font-medium text-ink-text transition hover:border-brass"
+        className="mb-3 block w-full rounded-md border border-line py-2.5 text-center text-sm font-medium text-neutral-900 transition hover:bg-surface"
       >
         プロフィールを編集する
       </Link>
 
       <Link
         href="/billing"
-        className="block w-full rounded-md border border-brass bg-brass/10 py-3 text-center font-medium text-brass transition hover:bg-brass/20"
+        className="block w-full rounded-md bg-accent py-2.5 text-center text-sm font-medium text-white transition hover:bg-neutral-800"
       >
         プランを管理する
       </Link>
