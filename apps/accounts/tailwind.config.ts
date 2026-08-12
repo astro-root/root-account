@@ -9,6 +9,7 @@ export default {
         surface: '#FAFAFA',
         muted: '#737373',
         accent: '#171717',
+        brand: '#4F46E5',
         danger: '#DC2626',
         success: '#16A34A',
       },

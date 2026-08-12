@@ -24,9 +24,13 @@ export default async function ProfileEditPage() {
         </Link>
       </div>
 
-      <div className="mb-6 rounded-lg border border-line bg-white p-5">
+      <div className="mb-6 rounded-lg border border-line bg-surface p-5">
         <h2 className="mb-3 text-base font-semibold text-neutral-900">アイコン</h2>
-        <AvatarUploader userId={session!.user.id} initialUrl={profile?.avatar_url ?? null} />
+        <AvatarUploader
+          userId={session!.user.id}
+          initialUrl={profile?.avatar_url ?? null}
+          fallbackLabel={profile?.display_name ?? profile?.username ?? session!.user.email ?? '?'}
+        />
       </div>
 
       <div className="space-y-4">

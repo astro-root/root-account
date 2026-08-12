@@ -28,11 +28,15 @@ export default async function ProfilePage() {
     <div>
       <header className="mb-8 flex items-start justify-between">
         <div className="flex items-center gap-4">
-          <div className="h-14 w-14 overflow-hidden rounded-full border border-line bg-surface">
+          <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-line bg-brand/10 text-lg font-semibold text-brand">
             {profile?.avatar_url ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
-            ) : null}
+            ) : (
+              (profile?.display_name ?? profile?.username ?? session!.user.email ?? '?')
+                .charAt(0)
+                .toUpperCase()
+            )}
           </div>
           <div>
             <h1 className="text-lg font-semibold text-neutral-900">
@@ -48,7 +52,7 @@ export default async function ProfilePage() {
 
       <div className="mb-6 flex items-center justify-between rounded-lg border border-line p-4">
         <span className="text-sm text-muted">現在のプラン</span>
-        <span className="rounded-full border border-line px-3 py-1 text-sm font-medium text-neutral-900">
+        <span className="rounded-full bg-brand/10 px-3 py-1 text-sm font-medium text-brand">
           {PLAN_LABEL[plan] ?? plan}
         </span>
       </div>

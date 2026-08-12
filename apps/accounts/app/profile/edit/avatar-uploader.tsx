@@ -7,9 +7,11 @@ import { updateAvatarUrl } from './actions'
 export function AvatarUploader({
   userId,
   initialUrl,
+  fallbackLabel,
 }: {
   userId: string
   initialUrl: string | null
+  fallbackLabel: string
 }) {
   const [url, setUrl] = useState(initialUrl)
   const [uploading, setUploading] = useState(false)
@@ -59,14 +61,12 @@ export function AvatarUploader({
 
   return (
     <div className="flex items-center gap-4">
-      <div className="h-16 w-16 overflow-hidden rounded-full border border-neutral-900 bg-white">
+      <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-line bg-brand/10 text-xl font-semibold text-brand">
         {url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={url} alt="" className="h-full w-full object-cover" />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs text-muted">
-            未設定
-          </div>
+          fallbackLabel.charAt(0).toUpperCase()
         )}
       </div>
       <div>

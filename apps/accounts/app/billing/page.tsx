@@ -65,7 +65,7 @@ export default async function BillingPage() {
             <div
               key={plan.tier}
               className={`rounded-lg border p-4 ${
-                isCurrent ? 'border-neutral-900' : 'border-line'
+                isCurrent ? 'border-neutral-900 bg-white' : 'border-line bg-surface'
               }`}
             >
               <div className="flex items-baseline justify-between">

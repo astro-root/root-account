@@ -26,7 +26,7 @@ export function ProfileForm({
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-line bg-white p-5"
+      className="space-y-4 rounded-lg border border-line bg-surface p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await updateProfile(formData))
@@ -95,7 +95,7 @@ export function EmailForm({ currentEmail }: { currentEmail: string }) {
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-line bg-white p-5"
+      className="space-y-4 rounded-lg border border-line bg-surface p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await changeEmail(formData))
@@ -136,7 +136,7 @@ export function PasswordForm() {
 
   return (
     <form
-      className="space-y-4 rounded-lg border border-line bg-white p-5"
+      className="space-y-4 rounded-lg border border-line bg-surface p-5"
       action={async (formData) => {
         setPending(true)
         setResult(await changePassword(formData))
