@@ -40,7 +40,8 @@ export async function updateProfile(formData: FormData): Promise<EditResult> {
     if (error.code === '23505') {
       return { ok: false, message: 'そのユーザーIDは既に使われています' }
     }
-    return { ok: false, message: '更新に失敗しました' }
+    // 一時的なデバッグ用: 実際のDBエラーをそのまま表示する
+    return { ok: false, message: `更新に失敗しました [${error.code}] ${error.message}` }
   }
 
   revalidatePath('/profile')
