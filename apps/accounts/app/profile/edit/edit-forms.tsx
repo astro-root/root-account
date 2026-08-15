@@ -80,7 +80,7 @@ export function ProfileForm({
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
+        className="rounded-md bg-gradient-to-r from-brand to-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
       >
         {pending ? '保存中…' : '保存する'}
       </button>
@@ -121,7 +121,7 @@ export function EmailForm({ currentEmail }: { currentEmail: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
+        className="rounded-md bg-gradient-to-r from-brand to-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
       >
         {pending ? '送信中…' : '変更する'}
       </button>
@@ -181,7 +181,7 @@ export function PasswordForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md border border-neutral-900 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-50"
+        className="rounded-md bg-gradient-to-r from-brand to-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
       >
         {pending ? '変更中…' : 'パスワードを変更する'}
       </button>

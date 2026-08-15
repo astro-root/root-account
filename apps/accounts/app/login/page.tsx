@@ -91,7 +91,7 @@ function PasswordForm({ returnTo }: { returnTo: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-accent py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50"
+        className="w-full rounded-md bg-gradient-to-r from-brand to-purple-500 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90 disabled:opacity-50"
       >
         {pending ? 'ログイン中…' : 'ログイン'}
       </button>
@@ -102,7 +102,7 @@ function PasswordForm({ returnTo }: { returnTo: string }) {
       )}
       <p className="text-center text-xs text-muted">
         アカウントをお持ちでない方は{' '}
-        <Link href="/signup" className="font-medium text-neutral-900 hover:underline">
+        <Link href="/signup" className="font-medium text-brand hover:underline">
           新規登録
         </Link>
       </p>
@@ -142,7 +142,7 @@ function MagicLinkForm({ returnTo }: { returnTo: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-accent py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50"
+        className="w-full rounded-md bg-gradient-to-r from-brand to-purple-500 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90 disabled:opacity-50"
       >
         {pending ? '送信中…' : 'ログインリンクを送る'}
       </button>
@@ -184,7 +184,7 @@ function LoginContent() {
           type="button"
           onClick={() => setTab('password')}
           className={`flex-1 rounded py-1.5 text-sm transition ${
-            tab === 'password' ? 'bg-white text-neutral-900 shadow-sm' : 'text-muted'
+            tab === 'password' ? 'bg-white text-brand shadow-sm' : 'text-muted'
           }`}
         >
           ID・パスワード
@@ -193,7 +193,7 @@ function LoginContent() {
           type="button"
           onClick={() => setTab('magiclink')}
           className={`flex-1 rounded py-1.5 text-sm transition ${
-            tab === 'magiclink' ? 'bg-white text-neutral-900 shadow-sm' : 'text-muted'
+            tab === 'magiclink' ? 'bg-white text-brand shadow-sm' : 'text-muted'
           }`}
         >
           メールでリンク送信

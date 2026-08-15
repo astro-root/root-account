@@ -84,7 +84,7 @@ export default function SignupPage() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-md bg-accent py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50"
+          className="w-full rounded-md bg-gradient-to-r from-brand to-purple-500 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90 disabled:opacity-50"
         >
           {pending ? '登録中…' : '登録する'}
         </button>
@@ -98,7 +98,7 @@ export default function SignupPage() {
 
       <p className="mt-6 text-center text-xs text-muted">
         既にアカウントをお持ちの方は{' '}
-        <Link href="/login" className="font-medium text-neutral-900 hover:underline">
+        <Link href="/login" className="font-medium text-brand hover:underline">
           ログイン
         </Link>
       </p>

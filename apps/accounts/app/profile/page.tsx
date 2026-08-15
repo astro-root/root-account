@@ -9,6 +9,12 @@ const PLAN_LABEL: Record<string, string> = {
   doctor: '博士',
 }
 
+const PLAN_BADGE: Record<string, string> = {
+  bachelor: 'bg-neutral-100 text-neutral-600',
+  master: 'bg-brand/10 text-brand',
+  doctor: 'bg-gold/10 text-gold',
+}
+
 export default async function ProfilePage() {
   const supabase = await createClient()
   const {
@@ -52,7 +58,7 @@ export default async function ProfilePage() {
 
       <div className="mb-6 flex items-center justify-between rounded-lg border border-line p-4">
         <span className="text-sm text-muted">現在のプラン</span>
-        <span className="rounded-full bg-brand/10 px-3 py-1 text-sm font-medium text-brand">
+        <span className={`rounded-full px-3 py-1 text-sm font-medium ${PLAN_BADGE[plan] ?? PLAN_BADGE.bachelor}`}>
           {PLAN_LABEL[plan] ?? plan}
         </span>
       </div>
@@ -66,7 +72,7 @@ export default async function ProfilePage() {
 
       <Link
         href="/billing"
-        className="block w-full rounded-md bg-accent py-2.5 text-center text-sm font-medium text-white transition hover:bg-neutral-800"
+        className="block w-full rounded-md bg-gradient-to-r from-brand to-purple-500 py-2.5 text-center text-sm font-medium text-white shadow-sm transition hover:opacity-90"
       >
         プランを管理する
       </Link>

@@ -3,6 +3,12 @@ import { createClient } from '@/lib/supabase/server'
 import { decodeEntitlements } from '@/lib/root-account/entitlements'
 import type { PlanTier } from '@/lib/root-account/entitlements'
 
+const PLAN_STYLE: Record<PlanTier, { badgeBg: string; badgeText: string; ring: string }> = {
+  bachelor: { badgeBg: 'bg-neutral-100', badgeText: 'text-neutral-600', ring: 'border-neutral-300' },
+  master: { badgeBg: 'bg-brand/10', badgeText: 'text-brand', ring: 'border-brand' },
+  doctor: { badgeBg: 'bg-gold/10', badgeText: 'text-gold', ring: 'border-gold' },
+}
+
 const PLANS: {
   tier: PlanTier
   label: string
@@ -61,11 +67,12 @@ export default async function BillingPage() {
       <div className="space-y-3">
         {PLANS.map((plan) => {
           const isCurrent = plan.tier === currentPlan
+          const style = PLAN_STYLE[plan.tier]
           return (
             <div
               key={plan.tier}
-              className={`rounded-lg border p-4 ${
-                isCurrent ? 'border-neutral-900 bg-white' : 'border-line bg-surface'
+              className={`rounded-lg border-2 p-4 ${
+                isCurrent ? `${style.ring} bg-white` : 'border-line bg-surface'
               }`}
             >
               <div className="flex items-baseline justify-between">
@@ -74,7 +81,7 @@ export default async function BillingPage() {
                   <span className="ml-2 font-normal text-muted">{plan.price}</span>
                 </span>
                 {isCurrent && (
-                  <span className="rounded-full bg-neutral-900 px-2 py-0.5 text-xs text-white">
+                  <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${style.badgeBg} ${style.badgeText}`}>
                     現在のプラン
                   </span>
                 )}
